@@ -1,17 +1,5 @@
-import re
-from utils import handle_double_letters
-
-def encode(input_data):
-    match = re.match(r"\((.*)\)\"(.*)\"\s*-(\d+)", input_data)
-    if not match:
-        print("\nInvalid syntax. Please try again.")
-        return
-
-    password = match.group(1)
-    message = match.group(2)
-    shift = int(match.group(3))
-
-    shift += sum([ord(char) for char in password]) % 26
+def encode(message, password, shift):
+    shift += sum([ord(char) for char in password]) % 26  # Calculate total shift
     encoded_message = ""
 
     for char in message:
@@ -28,5 +16,4 @@ def encode(input_data):
         else:
             encoded_message += char  # Preserve non-alphabetic characters
 
-    encoded_message = handle_double_letters(encoded_message)
-    print(f"\nDisguised Message: {encoded_message}")
+    return encoded_message

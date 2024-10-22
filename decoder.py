@@ -1,5 +1,5 @@
 def decode(encoded_message, password, shift):
-    shift += sum([ord(char) for char in password]) % 26
+    shift += sum([ord(char) for char in password]) % 26  # Calculate total shift
     decoded_message = ""
 
     for char in encoded_message:
@@ -16,4 +16,4 @@ def decode(encoded_message, password, shift):
         else:
             decoded_message += char  # Preserve non-alphabetic characters
 
-    print(f"\nDecoded Message: {decoded_message}")
+    return decoded_message
